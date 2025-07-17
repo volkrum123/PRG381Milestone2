@@ -44,11 +44,12 @@ public class DBConnection {
         }          
     }
     
-    //FEEDBACK FORM:
+    //Creating the DB tables for each form:
     
-    public void createFeedbackTable(){
-        
-        try{
+    public void createFeedbackTable()
+    {
+        try
+        {
             String query = "Create Table FeedBackTB("+
                 "student VARCHAR(50)," +
                 "rating INTEGER CHECK (rating >=1 AND rating <=5)," +
@@ -56,18 +57,42 @@ public class DBConnection {
                 ")";
             this.con.createStatement().execute(query);
             System.out.println("Succesfully created FeadbackTable");
-        }catch(SQLException ex){
-            ex.printStackTrace();
         }
-        
+        catch(SQLException ex)
+        {
+            ex.printStackTrace();
+            System.out.println("Feedback table already exists.");
+        } 
     }
     
-    public ArrayList<Object[]> Feedbackview(){
+    public void createCounselorsTable()
+    {
+        try
+        {
+            String query = "CREATE TABLE Counselors ( "+
+                    "Counselor VARCHAR(100) PRIMARY KEY, "+
+                    "Specialization VARCHAR(100), "+
+                    "Availability VARCHAR(100))";
+            this.con.createStatement().execute(query);
+            JOptionPane.showMessageDialog(null, "Table created successfully.");
+        }
+        catch(SQLException ex)
+        {
+          System.out.println("Table already exists.");
+        }
+    }
+    
+    // Creating the Arraylist for each form:
+    
+    public ArrayList<Object[]> Feedbackview()
+    {
         ArrayList<Object[]> datalist = new ArrayList<>();
-        try{
+        try
+        {
             String query = "Select * FROM FeedBackTB";
             ResultSet table = this.con.createStatement().executeQuery(query);
-             while(table.next()){
+             while(table.next())
+             {
                  String student = table.getString("student");
                  Integer rating = table.getInt("rating");
                  String comment = table.getString("comments");
@@ -75,47 +100,103 @@ public class DBConnection {
                  Object[] row = {student,rating,comment};
                  datalist.add(row);
              }
-        }catch(SQLException ex){
+        }
+        catch(SQLException ex)
+        {
             ex.printStackTrace();
         }
         return datalist;
     }
     
-    public void addFB(String student, Integer rating, String comments){
-       String query = "INSERT INTO FeedBackTB (student, rating, comments) VALUES (?, ?, ?)";
-
-    try (PreparedStatement pst = con.prepareStatement(query)) {
-        pst.setString(1, student);
-        pst.setInt(2, rating);
-        pst.setString(3, comments);
-
-        pst.executeUpdate();
-        System.out.println("Data added!");
-        pst.close();
-    } catch (SQLException ex) {
-        ex.printStackTrace();
-        System.out.println("Data not added!");
-    }
+    public ArrayList<String[]> viewCounselors()
+    {
+        ArrayList<String[]> dataList = new ArrayList<>();
+        try
+        {
+            String query = "SELECT * FROM Counselors";
+            ResultSet table = this.con.createStatement().executeQuery(query);
+            while(table.next())
+            {
+                String counselor = table.getString("Counselor");
+                String specialization = table.getString("Specialization");
+                String availability = table.getString("Availability");
+                
+                String [] row = {counselor,specialization,availability};
+                dataList.add(row);
+            } 
+        }
+        catch(SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+        return dataList;
     }
     
-    public void UpdateFB(String student, int rating, String comment){
-        try{
+    //Creating the ADDbtn for each form:
+    
+    public void addFB(String student, Integer rating, String comments)
+    {
+       String query = "INSERT INTO FeedBackTB (student, rating, comments) VALUES (?, ?, ?)";
+       try (PreparedStatement pst = con.prepareStatement(query)) 
+       {
+          pst.setString(1, student);
+          pst.setInt(2, rating);
+          pst.setString(3, comments);
+          pst.executeUpdate();
+          System.out.println("Data added!");
+          pst.close();
+       } 
+       catch (SQLException ex) 
+       {
+        ex.printStackTrace();
+        System.out.println("Data not added!");
+       }
+    }
+    
+    public void addCounselor(String counselor, String specialization, String availability)
+    {
+        try
+        {
+            String query = "INSERT INTO Counselors VALUES (?,?,?)";
+            PreparedStatement ps = this.con.prepareStatement(query);
+            ps.setString(1, counselor);
+            ps.setString(1, specialization);
+            ps.setString(1, availability);
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Counselor added.");
+        } 
+        catch (SQLException ex) 
+        {
+            JOptionPane.showMessageDialog(null, "Error: "+ ex.getMessage());
+        }
+    }
+    
+    // Creating the Updatebtn for each form:
+    
+    public void UpdateFB(String student, int rating, String comment)
+    {
+        try
+        {
             String query = "UPDATE FeedBackTB SET rating =?,comments = ? WHERE student = ?";
             PreparedStatement pst = con.prepareStatement(query);
             pst.setInt(1, rating);
             pst.setString(2,comment);
             pst.setString(3,student);
             int rows = pst.executeUpdate();
-            if(rows > 0){
+            if(rows > 0)
+            {
                 JOptionPane.showMessageDialog(null, "Record update successfull!");
-            }else{
+            }
+            else
+            {
                  JOptionPane.showMessageDialog(null, "Record update Failed!");
             }
-        }catch(SQLException ex){
-            ex.printStackTrace();
-             JOptionPane.showMessageDialog(null, "Error: !"+ex.getMessage());
         }
-        
+        catch(SQLException ex)
+        {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error: !"+ex.getMessage());
+        }  
     }
     
     public int DeleteFB(String student, String rating, String comments)
