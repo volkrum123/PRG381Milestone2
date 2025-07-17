@@ -5,6 +5,7 @@
 package prg381milestone2;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
@@ -17,21 +18,22 @@ import java.sql.Statement;
  * @author Cash
  */
 public class DBConnection {
-    
+    //Set the fully qualified name of Apache Cerby Embedded JDBC driver class
     private static final String DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
+     //JDBC URL used to connect to an Apache Derby database.
     private static final String JDBC_URL = "jdbc:derby:NetbeansDB;create=true";
-    
+     //Set connection object to connect to Apache Derby databse
     Connection con;
     
     public DBConnection()
     {
         
     }
-    
+     //Create a connect to database method
     public void connect() throws ClassNotFoundException
     {
         try
-        {
+        { //Dynamically load JDBC driver class at runtime
             Class.forName(DRIVER);
             this.con = DriverManager.getConnection(JDBC_URL);
             if(this.con != null)
@@ -51,8 +53,8 @@ public class DBConnection {
     {
         try
         {
-            Statement stmt = con.createStatement();   
-            stmt.executeUpdate("DROP TABLE FeedBackTB");
+            //Statement stmt = con.createStatement();   
+            //stmt.executeUpdate("DROP TABLE FeedBackTB");
             String query = "Create Table FeedBackTB("+
                 "student VARCHAR(100)," +
                 "rating INTEGER CHECK (rating >=1 AND rating <=5)," +
@@ -68,6 +70,22 @@ public class DBConnection {
         } 
     }
     
+     public void createAppointmentsTable(){
+        try{
+            String query = "CREATE TABLE AppointmentsTB (" +
+                       "studentName VARCHAR(20), " +
+                       "counselorName VARCHAR(20), " +
+                       "apptDate DATE, " +
+                       "apptTime VARCHAR(20), " +
+                       "status VARCHAR(20))";
+            
+            this.con.createStatement().execute(query);
+            System.out.println("Table created successfully.");
+        }catch (SQLException ex){
+        ex.printStackTrace();
+        }
+    }
+     
     public void createCounselorsTable()
     {
         try
@@ -113,6 +131,30 @@ public class DBConnection {
         return datalist;
     }
     
+    public ArrayList<String[]>AppointmentView()
+    {
+        ArrayList<String[]> dataList = new ArrayList();
+        try{
+            String query =" SELECT * FROM Appointments";
+            ResultSet table = this.con.createStatement().executeQuery(query);
+            
+            while(table.next())
+            {
+                String studentName = table.getString("studentName");
+                String counselorName = table.getString("counselorName");
+                String apptDate = String.valueOf(table.getDate("apptDate"));
+                String apptTime = table.getString("apptTime");
+                String status = table.getString("status");
+                
+                String[] row = {studentName, counselorName, apptDate, apptTime, status};
+                dataList.add(row);
+            }   
+        } catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        return dataList;
+    }
+    
     public ArrayList<String[]> viewCounselors()
     {
         ArrayList<String[]> dataList = new ArrayList<>();
@@ -156,6 +198,17 @@ public class DBConnection {
         ex.printStackTrace();
         JOptionPane.showMessageDialog(null, "Error: "+ ex.getMessage());
        }
+    }
+    public void addAP(String studentName, String counselorName, Date apptDate, String apptTime, String status)
+    {
+        try{
+            String query = "INSERT INTO AppointmentsTB( studentName, counselorName, apptDate, apptTime, status) VALUES(?, ?, ?, ?, ?)";
+            this.con.createStatement().execute(query);
+             JOptionPane.showMessageDialog(null, "Appointment added.");
+        } catch (SQLException ex){
+            ex.printStackTrace();
+             JOptionPane.showMessageDialog(null, "Appiontment not added.");
+        }  
     }
     
     public void addCounselor(String counselor, String specialization, String availability)
@@ -243,6 +296,17 @@ public class DBConnection {
            } 
          return rowsAffected; 
     }  
+    
+    public void deleteAppointment(String studentName) {
+        try {
+            String query = "DELETE FROM Appointments WHERE studentName = '" + studentName + "'";
+            this.con.createStatement().execute(query);
+             JOptionPane.showMessageDialog(null, "Appointment deleted!");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Failed to delete Appointment!");
+        }
+    }
 
     public void removeCounselor(String counselor) 
     {
