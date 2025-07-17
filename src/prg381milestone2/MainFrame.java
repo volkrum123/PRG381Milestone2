@@ -8,6 +8,11 @@ import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import javax.swing.*;
+import java.awt.*;
+import javax.swing.table.JTableHeader;
+import javax.swing.plaf.basic.BasicButtonUI;
+import java.awt.geom.RoundRectangle2D;
 
 
 public class MainFrame extends javax.swing.JFrame {
@@ -24,8 +29,65 @@ public class MainFrame extends javax.swing.JFrame {
             return 0;
         }
     });
+        Font font = new Font("Segoe UI",Font.PLAIN,14);
+        UIManager.put("Label.font", font);
+        UIManager.put("Button.font", font);
+        UIManager.put("TextField.font", font);
+        UIManager.put("Table.font", font);
+        UIManager.put("TableHeader.font", font);
+        jPanel1.setBackground(new Color(13,71,161));
+        for(java.awt.Component comp: jPanel1.getComponents()){
+            if(comp instanceof javax.swing.JButton){
+                JButton btn = (JButton) comp;
+                btn.setBackground(new Color(100,181,246));
+                btn.setForeground(Color.WHITE);
+                btn.setFont(new Font("Segoe UI",Font.PLAIN,14));
+                btn.setFocusPainted(false);
+                btn.setBorder(BorderFactory.createEmptyBorder(5,15,5,15));
+            }
+        }
+        JTable[] tables = {AppointmentTable,CounselorTB,FeedbackTB};
+        for(JTable table :tables){
+            table.setBackground(Color.WHITE);
+            table.setForeground(Color.DARK_GRAY);
+            table.setGridColor(new Color(197,225,250));
+            JTableHeader header = table.getTableHeader();
+            header.setBackground(new Color(25,118,210));
+            header.setForeground(Color.WHITE);
+            header.setFont(new Font("Segoe UI",Font.BOLD,14));
+        }
+        JPanel[] panels = {AppointmentTab,CounselorTab,FeedbackTab};
+        for(JPanel panel : panels){
+            for(Component comp : panel.getComponents()){
+                if(comp instanceof JButton){
+                JButton btn = (JButton) comp;
+                btn.setBackground(new Color(100,181,246));
+                btn.setForeground(Color.WHITE);
+                btn.setFont(new Font("Segoe UI",Font.PLAIN,14));
+                btn.setFocusPainted(false);
+                btn.setBorder(BorderFactory.createEmptyBorder(5,15,5,15));
+                btn.setContentAreaFilled(false);
+                btn.setOpaque(false);
+                btn.setUI(new RoundedButtonUI());
+                }
+            }
+        }
     }
+    class RoundedButtonUI extends BasicButtonUI {
+        @Override
+        public void paint(Graphics g, JComponent c) {
+            AbstractButton b = (AbstractButton) c;
+            Graphics2D g2 = (Graphics2D) g.create();
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
+            Shape round = new RoundRectangle2D.Float(0, 0, c.getWidth(), c.getHeight(), 20, 20);
+            g2.setColor(b.getBackground());
+            g2.fill(round);
+
+            super.paint(g2, c);
+            g2.dispose();
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
