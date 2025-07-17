@@ -13,6 +13,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+
 /**
  *
  * @author Cash
@@ -200,11 +202,18 @@ public class DBConnection {
        }
     }
     public void addAP(String studentName, String counselorName, Date apptDate, String apptTime, String status)
-    {
-        try{
-            String query = "INSERT INTO AppointmentsTB( studentName, counselorName, apptDate, apptTime, status) VALUES(?, ?, ?, ?, ?)";
-            this.con.createStatement().execute(query);
-             JOptionPane.showMessageDialog(null, "Appointment added.");
+    { 
+        String query = "INSERT INTO AppointmentsTB( studentName, counselorName, apptDate, apptTime, status) VALUES(?, ?, ?, ?, ?)";
+        try(PreparedStatement pst = con.prepareStatement(query)){
+            
+            pst.setString(1,studentName);
+            pst.setString(2,counselorName);
+            pst.setDate(3,apptDate);
+            pst.setString(4,apptTime);
+            pst.setString(5,status);
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Appointment added.");
+            pst.close();
         } catch (SQLException ex){
             ex.printStackTrace();
              JOptionPane.showMessageDialog(null, "Appiontment not added.");
@@ -258,16 +267,25 @@ public class DBConnection {
         }  
     }
     
-    public void updateAppointment(String studentName, String counselorName, String apptDate, String apptTime, String status) {
+    public void updateAppointment(String studentName, String counselorName, Date apptDate, String apptTime, String status) {
+       
         try {
-            String query = "UPDATE AppointmentsTB SET " +
-                           "counselorName = '" + counselorName + "', " +
-                           "apptDate = '" + apptDate + "', " +
-                           "apptTime = '" + apptTime + "', " +
-                           "status = '" + status + "' " +
-                           "WHERE studentName = '" + studentName + "'";
-            this.con.createStatement().execute(query);
-            System.out.println("Appointment updated.");
+             String query = "UPDATE AppointmentsTB SET counselorName = ?, apptDate = ?, apptTime = ?,status= ? WHERE studentName = ?";
+             PreparedStatement pst = con.prepareStatement(query);
+             pst.setString(1,counselorName);
+             pst.setDate(2,apptDate);
+             pst.setString(3,apptTime);
+             pst.setString(4,status);
+             pst.setString(5,studentName);
+             int rows = pst.executeUpdate();
+            if(rows > 0)
+            {
+                JOptionPane.showMessageDialog(null, "Appointment updated!");
+            }
+            else
+            {
+                 JOptionPane.showMessageDialog(null, "Failed to update appointment!");
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
             System.out.println("Update failed.");
