@@ -681,7 +681,10 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddCounselorActionPerformed
 
     private void btnViewCounselorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewCounselorActionPerformed
-        
+        DefaultTableModel model = (DefaultTableModel) CounselorTB.getModel();
+        for (String[] row : DB.viewCounselors()){
+            model.addRow(row);
+        }
     }//GEN-LAST:event_btnViewCounselorActionPerformed
 
     private void btnUpdateCounselorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateCounselorActionPerformed
@@ -689,7 +692,9 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUpdateCounselorActionPerformed
 
     private void btnRemoveCounselorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveCounselorActionPerformed
-        
+        String counselor = txtCounselor.getText();
+        DB.removeCounselor(counselor);
+        System.out.println("Delete clicked: " + counselor);
     }//GEN-LAST:event_btnRemoveCounselorActionPerformed
 
     public static DBConnection DB = new DBConnection();
