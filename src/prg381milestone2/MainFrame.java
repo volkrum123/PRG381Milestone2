@@ -1001,7 +1001,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnViewAppointmentActionPerformed
 
     private void btnUpdateAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateAppointmentActionPerformed
-        
+
         String studentName = txtStudentAP.getText();
         String counselorName = txtCounselorAP.getText();
         java.util.Date selectedDate = jDateChooser1.getDate();
