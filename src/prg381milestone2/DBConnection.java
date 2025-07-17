@@ -135,7 +135,7 @@ public class DBConnection {
     {
         ArrayList<String[]> dataList = new ArrayList();
         try{
-            String query =" SELECT * FROM Appointments";
+            String query =" SELECT * FROM AppointmentsTB";
             ResultSet table = this.con.createStatement().executeQuery(query);
             
             while(table.next())
@@ -258,6 +258,22 @@ public class DBConnection {
         }  
     }
     
+    public void updateAppointment(String studentName, String counselorName, String apptDate, String apptTime, String status) {
+        try {
+            String query = "UPDATE AppointmentsTB SET " +
+                           "counselorName = '" + counselorName + "', " +
+                           "apptDate = '" + apptDate + "', " +
+                           "apptTime = '" + apptTime + "', " +
+                           "status = '" + status + "' " +
+                           "WHERE studentName = '" + studentName + "'";
+            this.con.createStatement().execute(query);
+            System.out.println("Appointment updated.");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Update failed.");
+        }
+    }
+    
     public void updateCounselor(String counselor, String specialization, String availability) 
     {
         try 
@@ -299,7 +315,7 @@ public class DBConnection {
     
     public void deleteAppointment(String studentName) {
         try {
-            String query = "DELETE FROM Appointments WHERE studentName = '" + studentName + "'";
+            String query = "DELETE FROM AppointmentsTB WHERE studentName = '" + studentName + "'";
             this.con.createStatement().execute(query);
              JOptionPane.showMessageDialog(null, "Appointment deleted!");
         } catch (SQLException ex) {
