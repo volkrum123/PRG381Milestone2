@@ -43,16 +43,16 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        AppointmentTable = new javax.swing.JTable();
+        txtStudentAP = new javax.swing.JTextField();
+        txtCounselorAP = new javax.swing.JTextField();
+        txtDate = new javax.swing.JTextField();
+        txtTime = new javax.swing.JTextField();
+        txtStatus = new javax.swing.JTextField();
+        btnAddAppointment = new javax.swing.JButton();
+        btnViewAppointment = new javax.swing.JButton();
+        btnUpdateAppointment = new javax.swing.JButton();
+        btnDeleteAppointment = new javax.swing.JButton();
         CounselorTab = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -115,7 +115,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel14.setText("Status:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        AppointmentTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -123,15 +123,15 @@ public class MainFrame extends javax.swing.JFrame {
                 "Student", "Counselor", "Date", "Time", "Status"
             }
         ));
-        jScrollPane4.setViewportView(jTable1);
+        jScrollPane4.setViewportView(AppointmentTable);
 
-        jButton1.setText("jButton1");
+        btnAddAppointment.setText("ADD");
 
-        jButton2.setText("jButton2");
+        btnViewAppointment.setText("VIEW");
 
-        jButton3.setText("jButton3");
+        btnUpdateAppointment.setText("UPDATE");
 
-        jButton4.setText("jButton4");
+        btnDeleteAppointment.setText("DELETE");
 
         javax.swing.GroupLayout AppointmentTabLayout = new javax.swing.GroupLayout(AppointmentTab);
         AppointmentTab.setLayout(AppointmentTabLayout);
@@ -153,32 +153,32 @@ public class MainFrame extends javax.swing.JFrame {
                                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(34, 34, 34)))
                                 .addGroup(AppointmentTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-                                    .addComponent(jTextField1)
-                                    .addComponent(jTextField3)))
+                                    .addComponent(txtCounselorAP, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                                    .addComponent(txtStudentAP)
+                                    .addComponent(txtDate)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, AppointmentTabLayout.createSequentialGroup()
                                 .addGroup(AppointmentTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(34, 34, 34)
                                 .addGroup(AppointmentTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField4)
-                                    .addComponent(jTextField5))))
+                                    .addComponent(txtTime)
+                                    .addComponent(txtStatus))))
                         .addGap(76, 76, 76)
                         .addGroup(AppointmentTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1)
-                            .addComponent(jButton3)))
+                            .addComponent(btnAddAppointment)
+                            .addComponent(btnUpdateAppointment)))
                     .addGroup(AppointmentTabLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(65, 65, 65)
                 .addGroup(AppointmentTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton4))
+                    .addComponent(btnViewAppointment)
+                    .addComponent(btnDeleteAppointment))
                 .addGap(96, 96, 96))
             .addGroup(AppointmentTabLayout.createSequentialGroup()
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 612, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         AppointmentTabLayout.setVerticalGroup(
             AppointmentTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,32 +188,32 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(AppointmentTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtStudentAP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(AppointmentTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(AppointmentTabLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(AppointmentTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtCounselorAP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(AppointmentTabLayout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(AppointmentTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))))
+                            .addComponent(btnAddAppointment)
+                            .addComponent(btnViewAppointment))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(AppointmentTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(AppointmentTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(txtTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUpdateAppointment)
+                    .addComponent(btnDeleteAppointment))
                 .addGap(18, 18, 18)
                 .addGroup(AppointmentTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -764,6 +764,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AppointmentTab;
+    private javax.swing.JTable AppointmentTable;
     private javax.swing.JButton AppointmentsNav;
     private javax.swing.JTable CounselorTB;
     private javax.swing.JPanel CounselorTab;
@@ -774,18 +775,18 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTabbedPane FormTabPane;
     private javax.swing.JButton HomeNav;
     private javax.swing.JPanel Hometab;
+    private javax.swing.JButton btnAddAppointment;
     private javax.swing.JButton btnAddCounselor;
     private javax.swing.JButton btnAddFeedback;
+    private javax.swing.JButton btnDeleteAppointment;
     private javax.swing.JButton btnEditFeedback;
     private javax.swing.JButton btnRemoveCounselor;
     private javax.swing.JButton btnRemoveFeedback;
+    private javax.swing.JButton btnUpdateAppointment;
     private javax.swing.JButton btnUpdateCounselor;
+    private javax.swing.JButton btnViewAppointment;
     private javax.swing.JButton btnViewCounselor;
     private javax.swing.JButton btnViewFeedback;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -805,17 +806,16 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextArea txtAreaComments;
     private javax.swing.JTextField txtAvailability;
     private javax.swing.JTextField txtCounselor;
+    private javax.swing.JTextField txtCounselorAP;
+    private javax.swing.JTextField txtDate;
     private javax.swing.JTextField txtRating;
     private javax.swing.JTextField txtSpecialization;
+    private javax.swing.JTextField txtStatus;
+    private javax.swing.JTextField txtStudentAP;
     private javax.swing.JTextField txtStudentFB;
+    private javax.swing.JTextField txtTime;
     // End of variables declaration//GEN-END:variables
 }
