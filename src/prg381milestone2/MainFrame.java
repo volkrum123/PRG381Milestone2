@@ -236,6 +236,11 @@ public class MainFrame extends javax.swing.JFrame {
                 "Counselor", "Specialization", "Availability"
             }
         ));
+        CounselorTB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CounselorTBMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(CounselorTB);
 
         btnAddCounselor.setText("ADD");
@@ -682,6 +687,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void btnViewCounselorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewCounselorActionPerformed
         DefaultTableModel model = (DefaultTableModel) CounselorTB.getModel();
+        model.setRowCount(0);
         for (String[] row : DB.viewCounselors()){
             model.addRow(row);
         }
@@ -693,14 +699,25 @@ public class MainFrame extends javax.swing.JFrame {
         String availability = txtAvailability.getText();
         
         DB.updateCounselor(counselor, specialization, availability);
+        btnViewCounselorActionPerformed(null);
         System.out.println("Update clicked: " + counselor + " updated to " + specialization + ", " + availability);
     }//GEN-LAST:event_btnUpdateCounselorActionPerformed
 
     private void btnRemoveCounselorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveCounselorActionPerformed
         String counselor = txtCounselor.getText();
         DB.removeCounselor(counselor);
+        btnViewCounselorActionPerformed(null);
         System.out.println("Delete clicked: " + counselor);
     }//GEN-LAST:event_btnRemoveCounselorActionPerformed
+
+    private void CounselorTBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CounselorTBMouseClicked
+        int SelectedRow = CounselorTB.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) CounselorTB.getModel();
+        
+        txtCounselor.setText(model.getValueAt(SelectedRow,0).toString());
+        txtSpecialization.setText(model.getValueAt(SelectedRow,1).toString());
+        txtAvailability.setText(model.getValueAt(SelectedRow,2).toString());
+    }//GEN-LAST:event_CounselorTBMouseClicked
 
     public static DBConnection DB = new DBConnection();
     public static void main(String args[]) {
@@ -733,12 +750,13 @@ public class MainFrame extends javax.swing.JFrame {
             public void run() {
                 new MainFrame().setVisible(true);
                 try
-            {
+                {
                 DB.connect();
                 //DB.createFeedbackTable();
-            }catch(ClassNotFoundException ex){
+                //DB.createCounselorsTable();
+                }catch(ClassNotFoundException ex){
                 ex.printStackTrace();
-            }
+                }
             }
             
         });

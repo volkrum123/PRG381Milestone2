@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import java.sql.Statement;
 /**
  *
  * @author Cash
@@ -69,9 +70,11 @@ public class DBConnection {
     {
         try
         {
-            String query = "CREATE TABLE Counselors ( "+
-                    "Counselor VARCHAR(100) PRIMARY KEY, "+
-                    "Specialization VARCHAR(100), "+
+           //Statement stmt = con.createStatement();   
+           //stmt.executeUpdate("DROP TABLE Counselors");
+            String query = "CREATE TABLE Counselors ("+
+                    "Counselor VARCHAR(100) PRIMARY KEY,"+
+                    "Specialization VARCHAR(100),"+
                     "Availability VARCHAR(100))";
             this.con.createStatement().execute(query);
             JOptionPane.showMessageDialog(null, "Table created successfully.");
@@ -143,27 +146,28 @@ public class DBConnection {
           pst.setInt(2, rating);
           pst.setString(3, comments);
           pst.executeUpdate();
-          System.out.println("Data added!");
+           JOptionPane.showMessageDialog(null, "Student added.");
           pst.close();
        } 
        catch (SQLException ex) 
        {
         ex.printStackTrace();
-        System.out.println("Data not added!");
+        JOptionPane.showMessageDialog(null, "Error: "+ ex.getMessage());
        }
     }
     
     public void addCounselor(String counselor, String specialization, String availability)
     {
+        String query = "INSERT INTO Counselors VALUES (?, ?, ?)";
         try
         {
-            String query = "INSERT INTO Counselors VALUES (?,?,?)";
-            PreparedStatement ps = this.con.prepareStatement(query);
+            PreparedStatement ps = con.prepareStatement(query);
             ps.setString(1, counselor);
-            ps.setString(1, specialization);
-            ps.setString(1, availability);
+            ps.setString(2, specialization);
+            ps.setString(3, availability);
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Counselor added.");
+            ps.close();
         } 
         catch (SQLException ex) 
         {
