@@ -199,6 +199,25 @@ public class DBConnection {
         }  
     }
     
+    public void updateCounselor(String counselor, String specialization, String availability) 
+    {
+        try 
+        {
+            String query = "UPDATE Counselors SET Specialization=?, Availability=? WHERE counselor=?";
+            PreparedStatement ps = this.con.prepareStatement(query);
+            ps.setString(1, specialization);
+            ps.setString(2, availability);
+            ps.setString(3, counselor);
+            ps.executeUpdate();
+            System.out.println("Updated: " + counselor + " to Specialization: " + specialization + ", Availability: " + availability);
+            JOptionPane.showMessageDialog(null, "Counselor Updated Successfully");
+        } 
+        catch (SQLException ex) 
+        {
+             JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
+        }
+    }
+    
     public int DeleteFB(String student, String rating, String comments)
     {
         String query = "DELETE FROM FeedBackTB WHERE student= ? AND rating = ? AND comments= ?";
