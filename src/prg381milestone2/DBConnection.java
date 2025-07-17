@@ -218,6 +218,8 @@ public class DBConnection {
         }
     }
     
+    //Creating the deletebtns for the forms
+    
     public int DeleteFB(String student, String rating, String comments)
     {
         String query = "DELETE FROM FeedBackTB WHERE student= ? AND rating = ? AND comments= ?";
@@ -234,7 +236,31 @@ public class DBConnection {
                 System.out.print("An error occured?");
            } 
          return rowsAffected; 
-    }      
+    }  
+
+    public void removeCounselor(String counselor) 
+    {
+        int confirm = JOptionPane.showConfirmDialog(
+            null,
+            "Delete Counselor?",
+            "Confirm!",
+            JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) 
+        {
+            try 
+            {
+                String query = "DELETE FROM Counselors WHERE Counselor=?";
+                PreparedStatement ps = this.con.prepareStatement(query);
+                ps.setString(1, counselor);
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Counselor removed!");
+            } 
+            catch (SQLException ex) 
+            {
+                JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
+            }
+        }
+    }    
 }
     
   
