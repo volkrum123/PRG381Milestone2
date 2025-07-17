@@ -51,10 +51,12 @@ public class DBConnection {
     {
         try
         {
+            Statement stmt = con.createStatement();   
+            stmt.executeUpdate("DROP TABLE FeedBackTB");
             String query = "Create Table FeedBackTB("+
-                "student VARCHAR(50)," +
+                "student VARCHAR(100)," +
                 "rating INTEGER CHECK (rating >=1 AND rating <=5)," +
-                "comments VARCHAR(300)" +
+                "comments VARCHAR(500)" +
                 ")";
             this.con.createStatement().execute(query);
             System.out.println("Succesfully created FeadbackTable");
@@ -62,7 +64,7 @@ public class DBConnection {
         catch(SQLException ex)
         {
             ex.printStackTrace();
-            System.out.println("Feedback table already exists.");
+            System.out.println("Table already exists.");
         } 
     }
     
@@ -146,7 +148,7 @@ public class DBConnection {
           pst.setInt(2, rating);
           pst.setString(3, comments);
           pst.executeUpdate();
-           JOptionPane.showMessageDialog(null, "Student added.");
+           JOptionPane.showMessageDialog(null, "Feedback added.");
           pst.close();
        } 
        catch (SQLException ex) 
@@ -189,11 +191,11 @@ public class DBConnection {
             int rows = pst.executeUpdate();
             if(rows > 0)
             {
-                JOptionPane.showMessageDialog(null, "Record update successfull!");
+                JOptionPane.showMessageDialog(null, "Feedback updated!");
             }
             else
             {
-                 JOptionPane.showMessageDialog(null, "Record update Failed!");
+                 JOptionPane.showMessageDialog(null, "Feedback update Failed!");
             }
         }
         catch(SQLException ex)
@@ -237,7 +239,7 @@ public class DBConnection {
             pst.close();  
            }catch (SQLException ex) {
                 ex.printStackTrace();
-                System.out.print("An error occured?");
+                JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
            } 
          return rowsAffected; 
     }  

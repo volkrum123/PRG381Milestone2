@@ -627,7 +627,7 @@ public class MainFrame extends javax.swing.JFrame {
         try{
             int RA = DB.DeleteFB(student, rating, comment);
             if(RA > 0){
-                JOptionPane.showMessageDialog(this,"Record deleted succesfuly!");
+                JOptionPane.showMessageDialog(this,"Feedback removed!");
                 txtStudentFB.setText("");
                 txtRating.setText("");
                 txtAreaComments.setText("");
