@@ -688,7 +688,12 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnViewCounselorActionPerformed
 
     private void btnUpdateCounselorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateCounselorActionPerformed
-       
+       String counselor = txtCounselor.getText();
+        String specialization = txtSpecialization.getText();
+        String availability = txtAvailability.getText();
+        
+        DB.updateCounselor(counselor, specialization, availability);
+        System.out.println("Update clicked: " + counselor + " updated to " + specialization + ", " + availability);
     }//GEN-LAST:event_btnUpdateCounselorActionPerformed
 
     private void btnRemoveCounselorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveCounselorActionPerformed
