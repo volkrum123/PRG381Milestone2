@@ -21,7 +21,7 @@ public class PRG381Milestone2 {
             {
                 DB.connect();
                 //DB.createFeedbackTable();
-                DB.createCounselorsTable();
+                //DB.createCounselorsTable();
             }catch(ClassNotFoundException ex){
                 ex.printStackTrace();
             }

@@ -239,12 +239,32 @@ public class MainFrame extends javax.swing.JFrame {
         jScrollPane1.setViewportView(CounselorTB);
 
         btnAddCounselor.setText("ADD");
+        btnAddCounselor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddCounselorActionPerformed(evt);
+            }
+        });
 
         btnUpdateCounselor.setText("UPDATE");
+        btnUpdateCounselor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateCounselorActionPerformed(evt);
+            }
+        });
 
         btnRemoveCounselor.setText("REMOVE");
+        btnRemoveCounselor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveCounselorActionPerformed(evt);
+            }
+        });
 
         btnViewCounselor.setText("VIEW");
+        btnViewCounselor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewCounselorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout CounselorTabLayout = new javax.swing.GroupLayout(CounselorTab);
         CounselorTab.setLayout(CounselorTabLayout);
@@ -540,7 +560,7 @@ public class MainFrame extends javax.swing.JFrame {
        FormTabPane.setSelectedIndex(3);
     }//GEN-LAST:event_FeedbackNavActionPerformed
 
-    // FEEDBACK form:
+    // Functionality for the FEEDBACK form:
     
     private void btnAddFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddFeedbackActionPerformed
         String student = txtStudentFB.getText();
@@ -637,6 +657,40 @@ public class MainFrame extends javax.swing.JFrame {
         DB.UpdateFB(student, rating, comment);
         btnViewFeedbackActionPerformed(null);
     }//GEN-LAST:event_btnEditFeedbackActionPerformed
+
+    // Functionality for the Counselor form:
+    
+    private void btnAddCounselorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCounselorActionPerformed
+        String counselor = txtCounselor.getText();
+        String specialization = txtSpecialization.getText();
+        String availability = txtAvailability.getText();
+        
+        if (counselor.isEmpty() || specialization.isEmpty() || availability.isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, 
+                    "Please enter all fields",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }else{
+            DB.addCounselor(counselor, specialization, availability);
+            JOptionPane.showMessageDialog(this,
+                    "Data Added to Database",
+                    "Confirm!",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnAddCounselorActionPerformed
+
+    private void btnViewCounselorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewCounselorActionPerformed
+        
+    }//GEN-LAST:event_btnViewCounselorActionPerformed
+
+    private void btnUpdateCounselorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateCounselorActionPerformed
+       
+    }//GEN-LAST:event_btnUpdateCounselorActionPerformed
+
+    private void btnRemoveCounselorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveCounselorActionPerformed
+        
+    }//GEN-LAST:event_btnRemoveCounselorActionPerformed
 
     public static DBConnection DB = new DBConnection();
     public static void main(String args[]) {
