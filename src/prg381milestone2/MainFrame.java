@@ -29,13 +29,6 @@ public class MainFrame extends javax.swing.JFrame {
             return 0;
         }
     });
-        String path = "C:/Users/Cash/Documents/Belgium/year3/PRG 381/Projects/Project M2/PRG381Milestone2/src/images/image.jpeg";
-        ImageIcon originalIcon = new ImageIcon(path);
-        Image resizedImage = originalIcon.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH);
-        ImageIcon resizedIcon = new ImageIcon(resizedImage);
-        logoLabel.setIcon(resizedIcon);
-       
-        
         Font font = new Font("Segoe UI",Font.PLAIN,14);
         UIManager.put("Label.font", font);
         UIManager.put("Button.font", font);
@@ -186,7 +179,6 @@ public class MainFrame extends javax.swing.JFrame {
         AppointmentsNav = new javax.swing.JButton();
         CounselorsNav = new javax.swing.JButton();
         FeedbackNav = new javax.swing.JButton();
-        logoLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -751,9 +743,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        logoLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\Cash\\Documents\\Belgium\\year3\\PRG 381\\Projects\\Project M2\\PRG381Milestone2\\src\\images\\image.jpeg")); // NOI18N
-        logoLabel.setText("jLabel16");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -764,16 +753,13 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(AppointmentsNav, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(CounselorsNav, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(HomeNav, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(FeedbackNav, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(logoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(FeedbackNav, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(logoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
+                .addGap(175, 175, 175)
                 .addComponent(HomeNav)
                 .addGap(26, 26, 26)
                 .addComponent(AppointmentsNav)
@@ -1133,7 +1119,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JLabel logoLabel;
     private javax.swing.JTextArea txtAreaComments;
     private javax.swing.JTextField txtAvailability;
     private javax.swing.JTextField txtCounselor;

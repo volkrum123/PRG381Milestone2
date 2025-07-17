@@ -1057,7 +1057,6 @@
                       <Component id="CounselorsNav" alignment="0" max="32767" attributes="0"/>
                       <Component id="HomeNav" alignment="0" max="32767" attributes="0"/>
                       <Component id="FeedbackNav" alignment="0" max="32767" attributes="0"/>
-                      <Component id="logoLabel" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="17" max="32767" attributes="0"/>
               </Group>
@@ -1066,9 +1065,7 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                  <Component id="logoLabel" min="-2" pref="105" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="175" max="-2" attributes="0"/>
                   <Component id="HomeNav" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Component id="AppointmentsNav" min="-2" max="-2" attributes="0"/>
@@ -1113,14 +1110,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FeedbackNavActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="logoLabel">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Cash\Documents\Belgium\year3\PRG 381\Projects\Project M2\PRG381Milestone2\src\images\image.jpeg"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="jLabel16"/>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>
